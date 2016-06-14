@@ -62,7 +62,9 @@ function main(argv) {
   )
   var files = packageJson.files
 
-  var packageFile = path.join(os.tmpdir(), 'package.zip')
+  // Azure can't deal with babun/cygwin paths in :-(
+  //var packageFile = path.join(os.tmpdir(), 'package.zip')
+  var packageFile = path.join(".", 'package.zip')
   console.log("Creating package file: " + packageFile)
 
   var output = fs.createWriteStream(packageFile)
