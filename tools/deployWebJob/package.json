@@ -2,7 +2,7 @@
   "name": "deploy",
   "version": "1.0.0",
   "description": "Deploy a web job to an Azure Web Service site",
-  "main": "deploy.js",
+  "main": "run.js",
   "dependencies": {
     "archiver": "^1.0.0",
     "minimist": "^1.2.0",

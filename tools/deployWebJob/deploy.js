@@ -6,7 +6,7 @@ var exec = require("child_process").exec
 var randomstring = require("randomstring")
 
 function usage() {
-  console.log("node deploy.js <path_to_package> --job-type=[continuous|triggered] " +
+  console.log("node run.js <path_to_package> --job-type=[continuous|triggered] " +
               "--job-name=<job_name> --site-name=<website_name>")
 }
 
@@ -62,7 +62,7 @@ function main(argv) {
   )
   var files = packageJson.files
 
-  var packageFile = path.join(".", 'package.zip')
+  var packageFile = path.join(os.tmpdir(), 'package.zip')
   console.log("Creating package file: " + packageFile)
 
   var output = fs.createWriteStream(packageFile)
