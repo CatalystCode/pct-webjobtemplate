@@ -69,29 +69,34 @@ function main(argv) {
 
   var output = fs.createWriteStream(packageFile)
   var archive = archiver('zip')
+
+  archive.on("end", function(err, result) {
+
+    console.log("done")
+
+    var cmd = "azure"
+    var _args = [
+      "site", "job", "upload", "--job-type=" + args["job-type"],
+      "--job-name=" + args["job-name"], "--job-file=" + packageFile,
+      args["site-name"]
+    ]
+
+    shell(cmd, _args, (exitCode) => {
+      if (exitCode != 0) {
+        process.exit(2);
+      }
+      else {
+        process.exit(0);
+      }
+    });
+  });
+
   archive.pipe(output)
   for (file of files) {
     archive.file(path.join(packageDir, file), {name:file})
   }
   archive.directory(path.join(packageDir, "node_modules"), "node_modules")
   archive.finalize()
-  console.log("done")
-
-  var cmd = "azure"
-  var args = [
-    "site", "job", "upload", "--job-type=" + args["job-type"],
-    "--job-name=" + args["job-name"], "--job-file=" + packageFile,
-    args["site-name"]
-  ]
-
-  shell(cmd, args, (exitCode) => {
-    if (exitCode != 0) {
-      process.exit(2);
-    }
-    else {
-      process.exit(0);
-    }
-  });
 }
 
 if (require.main === module) {
