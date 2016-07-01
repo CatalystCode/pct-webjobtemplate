@@ -1,8 +1,6 @@
 var path = require("path");
 var exec = require("child_process").exec;
 
-/*&$AzCopyPath $rootPath\Data https://$StorageAccountName.blob.core.windows.net/$ReferenceContainerName /DestKey:$StorageKey *.* /Y */
-
 AZCOPY_PATH = path.join(".", "tools", "AzCopy.exe");
 
 function shell(cmd, args, cb) {
@@ -13,6 +11,7 @@ function shell(cmd, args, cb) {
   // .cmd (which is what the azure cli is).
   // This'll run the Windows version of azure.cmd, not any npm
   // installed version, btw.
+
   cb(null);
 
   var shell = exec(cmd + " " + args.join(" "))
