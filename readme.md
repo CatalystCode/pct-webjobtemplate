@@ -2,5 +2,6 @@
 
 Contains a minimal website plus tooling to enable quick development of WebJob based projects.
 
-Clone this repo, create a second repo containing your web jobs and then set that as a submodule
-of this one in the ./jobs/
+Clone this repo as your top-level project then create a 'jobs' directly within that is either a
+symlink to your project's jobs or a submodule of that repo.
+
