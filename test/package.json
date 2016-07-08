@@ -13,7 +13,6 @@
     "nconf": "^0.8.4"
   },
   "devDependencies": {
-    "redtape": "^1.0.0",
-    "tape": "^4.6.0"
+    "redtape": "^1.0.0"
   }
 }
